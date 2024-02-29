@@ -7,9 +7,15 @@ app.use('/assets', express.static('assets'));
 
 app.use(express.json());
 
+app.use(express.urlencoded({ extended: true }));
+
 app.get('/', (req, res) => {
-    const message = "Use POST request to use this API (English to French)";
-    res.send(`<h1>${message}</h1>`);
+    res.send(`<h2>English to French Converter</h2>
+    <form action="/" method="post">
+        <label for="englishText">Enter English text:</label><br>
+        <textarea id="englishText" name="text" rows="4" cols="50"></textarea><br>
+        <button type="submit">Convert to French</button>
+    </form>`);
 });
 
 app.post('/', async (req, res) => {
